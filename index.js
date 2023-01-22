@@ -31,16 +31,14 @@ async function login(code) {
       return alert(JSON.stringify(result, null, 2));
     }
 
-    // token can now be used to send authenticated requests against https://api.github.com
-    const getUserResponse = await fetch("https://api.github.com/user", {
-      headers: {
-        accept: "application/vnd.github.v3+json",
-        authorization: `token ${result.token}`
-      }
-    });
-    const { login } = await getUserResponse.json();
-    $login.textContent = login;
-    document.body.dataset.state = "signed-in";
+    const { Octokit } = await import("https://cdn.skypack.dev/@octokit/core");
+    const octokit = new Octokit({ auth: result.token });
+
+    const {
+      data: { login },
+    } = await octokit.request("GET /user");
+    alert("Hi there, " + login);
+
   } catch (error) {
     alert(error);
     location.reload();
