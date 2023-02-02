@@ -5,9 +5,10 @@ const $login = document.querySelector("#login");
 if (code) {
   login(code);
 }
-else {
-  document.getElementById('message').innerHTML = 'No login code found. You need to login first.'
-  document.getElementById('loading').style.visibility = 'invisible';
+else
+{
+    document.getElementById('message').innerHTML = 'No login code found. You need to login first.'
+    document.getElementById('loading').style.visibility = 'invisible';
 }
 
 async function login(code) {
@@ -41,9 +42,8 @@ async function login(code) {
     const {
       data: { login },
     } = await octokit.request("GET /user");
-    alert("Hi there, " + login);
+    document.getElementById('message').innerHTML = "Hi again " + login + " !";
     document.getElementById('loading').style.visibility = 'invisible';
-
   } catch (error) {
     alert(error);
     location.reload();
