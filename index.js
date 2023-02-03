@@ -1,4 +1,4 @@
-const WORKER_URL = "https://red-salad-a419.amirgoodarzi75.workers.dev";
+const WORKER_URL = "https://api.amirihusayn.ir";
 const code = new URL(location.href).searchParams.get("code");
 const $login = document.querySelector("#login");
 
